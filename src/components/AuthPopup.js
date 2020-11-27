@@ -75,15 +75,17 @@ function AuthPopup({ onAuth, hadleLogin, isOpen, onClose, onSwitchPopupOpen, onD
     return (
         <PopupWithForm
             name="formauth"
+            firstname="auth"
             title="Войти"
             isOpen={isOpen}
             onClose={onClose}
             onSwitchPopupOpen={onSwitchPopupOpen}
+
         >
             <label className="popup__label-input">
                 <span className="popup__span-name">Email</span>
                 <input 
-                id="email" 
+                id="email-auth" 
                 name="email" 
                 type="email" 
                 className="popup__input"
@@ -95,12 +97,12 @@ function AuthPopup({ onAuth, hadleLogin, isOpen, onClose, onSwitchPopupOpen, onD
                 ref={inputEmail}
                 
                  />
-                <span id="input-email-error" className="popup__span-error" ref={spanEmailError}>{isEmailError ? "Адрес неполный или некорректный" : ""}</span>
+                <span id="input-email-error-auth" className="popup__span-error" ref={spanEmailError}>{isEmailError ? "Адрес неполный или некорректный" : ""}</span>
             </label>
             <label className="popup__label-input">
                 <span className="popup__span-name">Пароль</span>
                 <input 
-                id="password" 
+                id="password-auth" 
                 name="password" 
                 className="popup__input" 
                 type="password" 
@@ -109,7 +111,7 @@ function AuthPopup({ onAuth, hadleLogin, isOpen, onClose, onSwitchPopupOpen, onD
                 value={password || ''} 
                 onChange={handlePasswordChange}
                 ref={inputPassword} />
-                <span className="popup__span-error" id="input-password-error" ref={spanPasswordError}>{isPasswordError ? inputPassword.current.validationMessage : ""}</span>
+                <span className="popup__span-error" id="input-password-error-auth" ref={spanPasswordError}>{isPasswordError ? inputPassword.current.validationMessage : ""}</span>
             </label>
             <div className="popup__group-auth">
                 <span className="popup__span-error">{spanError}</span>

@@ -81,6 +81,7 @@ function RegistrationPopup({ isOpen, onClose, onSwitchPopupOpen, onDownEsc, hand
     return (
         <PopupWithForm
             name="formreg"
+            firstname="reg"
             title="Регистрация"
             isOpen={isOpen}
             onClose={onClose}
@@ -90,7 +91,7 @@ function RegistrationPopup({ isOpen, onClose, onSwitchPopupOpen, onDownEsc, hand
             <label className="popup__label-input">
                 <span className="popup__span-name">Email</span>
                 <input
-                    id="emailreg"
+                    id="email-reg"
                     name="email"
                     type="email"
                     className="popup__input"
@@ -101,12 +102,12 @@ function RegistrationPopup({ isOpen, onClose, onSwitchPopupOpen, onDownEsc, hand
                     onChange={handleEmailChange}
                     ref={inputEmail}
                 />
-                <span id="input-email-error" className="popup__span-error" ref={spanEmailError}>{isEmailError ? "Адрес неполный или некорректный" : ""}</span>
+                <span id="input-email-error-reg" className="popup__span-error" ref={spanEmailError}>{isEmailError ? "Адрес неполный или некорректный" : ""}</span>
             </label>
             <label className="popup__label-input">
                 <span className="popup__span-name">Пароль</span>
                 <input
-                    id="passwordreg"
+                    id="password-reg"
                     name="password"
                     className="popup__input"
                     type="password"
@@ -115,13 +116,13 @@ function RegistrationPopup({ isOpen, onClose, onSwitchPopupOpen, onDownEsc, hand
                     value={password || ''}
                     onChange={handlePasswordChange}
                     ref={inputPassword} />
-                <span className="popup__span-error" id="input-password-error" ref={spanPasswordError}>{isPasswordError ? inputPassword.current.validationMessage : ""}</span>
+                <span className="popup__span-error" id="input-password-error-reg" ref={spanPasswordError}>{isPasswordError ? inputPassword.current.validationMessage : ""}</span>
             </label>
 
             <label className="popup__label-input">
                 <span className="popup__span-name">Имя</span>
                 <input
-                    id="namereg"
+                    id="name-reg"
                     name="name"
                     className="popup__input"
                     type="text"
@@ -130,7 +131,7 @@ function RegistrationPopup({ isOpen, onClose, onSwitchPopupOpen, onDownEsc, hand
                     value={name || ''}
                     onChange={handleNameChange}
                     ref={inputName} />
-                <span className="popup__span-error" id="input-password-error" ref={spanNameError}>{isNameError ? inputName.current.validationMessage : ""}</span>
+                <span className="popup__span-error" id="input-name-error-reg" ref={spanNameError}>{isNameError ? inputName.current.validationMessage : ""}</span>
             </label>
             <div className="popup__group-auth">
                 <span className="popup__span-error">{spanError}</span>

@@ -11,10 +11,11 @@ function InfoPopup({ isOpen, onClose, onInfoClose, onDownEsc }) {
           document.removeEventListener("keydown", onDownEsc, false);
         };
       }, []);
-
+ 
     return (
         <PopupWithForm
             name="infopopup"
+            firstname="info"
             title="Пользователь успешно зарегистрирован!"
             isOpen={isOpen}
             onClose={onClose}

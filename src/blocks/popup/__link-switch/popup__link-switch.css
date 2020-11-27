@@ -1,8 +1,9 @@
 .popup__link-switch{
-font-family: Inter;
+font-family: Inter,Arial, Helvetica, sans-serif;
 font-weight: normal;
 font-size: 14px;
 line-height: 17px;
 text-decoration: none;
 color: #2F71E5;
 }
+

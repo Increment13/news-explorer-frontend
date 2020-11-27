@@ -28,5 +28,7 @@
     .savenews__square {
         margin-left: 24px;
         margin-right: 24px;
+        margin-bottom: 32px;
+        margin-top: 72px;
     }
 }

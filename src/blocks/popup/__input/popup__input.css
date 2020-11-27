@@ -14,3 +14,51 @@
         width: 288px;
     }
 }
+
+.popup__input::-webkit-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.popup__input::-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.popup__input:-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.popup__input:-ms-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.popup__input:focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}
+
+.popup__input:focus::-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}
+
+.popup__input:focus:-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}
+
+.popup__input:focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}

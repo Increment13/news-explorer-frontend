@@ -1,0 +1,15 @@
+.elements__banner-image{
+    width: 14px;
+    height: 18px;
+    opacity: 0.5;
+}
+
+
+.elements__banner-image:hover,
+.elements__banner-image:active,
+.elements__banner-image:focus {
+    opacity: 1;
+}
+
+
+

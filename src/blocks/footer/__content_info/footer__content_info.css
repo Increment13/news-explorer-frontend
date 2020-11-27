@@ -1,0 +1,26 @@
+.footer__content_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 304px;
+    height: 22px;
+}
+
+
+
+@media screen and (max-width: 767px) {
+    .footer__content_info {
+        flex-direction: column;
+        width: 200px;
+
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .footer__content_info {
+        flex-direction: column;
+        width: 200px;
+        height: 74px;
+
+    }
+}

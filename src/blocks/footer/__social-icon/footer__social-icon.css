@@ -1,0 +1,10 @@
+@import "./_icon_fb/footer__social-icon_icon_fb.css";
+@import "./_icon_git/footer__social-icon_icon_git.css";
+
+.footer__social-icon{
+    width: 20px;
+    height: 20px;
+    margin-right: 1px;
+    background-repeat: no-repeat;
+
+}

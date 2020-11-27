@@ -1,0 +1,17 @@
+@import "./__not-found/result__not-found.css";
+@import "./__not-found_image/result__not-found_image.css";
+@import "./__subtitle_not-found/result__subtitle_not-found.css";
+@import "./__title_not-found/result__title_not-found.css";
+@import "./__pool-searching/result__pool-searching.css";
+@import "./__searching/result__searching.css";
+@import "./__searching_image/result__searching_image.css";
+@import "./__pool/result__pool.css";
+@import "./__title/result__title.css";
+@import "./__button/result__button.css";
+
+.result{
+    max-width: 1440px;
+    background: #F5F6F7;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,8 @@
+@import "./__header/savenews__header.css";
+@import "./__subtitle/savenews__subtitle.css";
+@import "./__title/savenews__title.css";
+@import "./__square/savenews__square.css";
+
+.savenews{
+    display: flex;
+}

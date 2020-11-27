@@ -1,0 +1,15 @@
+.popup__group-auth {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 36px;
+    margin-right: 36px;
+    margin-bottom: 28px;
+}
+
+@media screen and (max-width: 550px) {
+    .popup__group-auth {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

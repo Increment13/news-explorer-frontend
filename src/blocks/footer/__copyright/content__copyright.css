@@ -1,0 +1,13 @@
+.content__copyright {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #B6BCBF;
+}
+
+@media screen and (max-width: 660px) {
+    .content__copyright {
+        width: 288px;
+        margin-top: 31px;
+    }
+}

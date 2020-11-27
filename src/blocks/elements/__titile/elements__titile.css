@@ -1,0 +1,31 @@
+.elements__titile {
+    font-family: 'Roboto Slab';
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 30px;
+    color: #1A1B22;
+    margin: 0;
+    margin-top: 12px;
+    margin-bottom: 16px;
+    height: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 768px) {
+    .elements__titile {
+        font-size: 22px;
+        line-height: 24px;
+        margin-bottom: 10px;
+        height: 72px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .elements__titile {
+        font-size: 22px;
+        line-height: 26px;
+        margin-top: 10px;
+        height: 56px;
+    }
+}

@@ -1,0 +1,25 @@
+.header__navigation {
+    margin-right: 104px;
+    margin-left: 104px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .header__navigation {
+        margin-right: 40px;
+        margin-left: 40px;
+    }
+}
+
+
+@media screen and (max-width: 760px) {
+    .header__navigation {
+        margin-right: 16px;
+        margin-left: 16px;
+    }
+}

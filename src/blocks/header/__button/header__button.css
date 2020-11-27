@@ -1,0 +1,24 @@
+.header__button{
+    height: 50px;
+    width: 176px;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 100px;
+    margin-left: 32px;
+    color: white;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    outline: none;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__button:hover,
+.header__button:active,
+.header__button:focus {
+    cursor: pointer;
+}
+

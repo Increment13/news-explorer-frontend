@@ -1,0 +1,36 @@
+.elements__element {
+    width: 32.46%;
+    border-radius: 15px;
+    background-color: white;
+    margin-right: 1.11%;
+    margin-top: 16px;
+    transition: transform 0.3s ease-out;
+}
+
+.elements__element:nth-child(3n+3) {
+    margin-right: 0;
+}
+ 
+
+.elements__element:hover,
+.elements__element:focus {
+    transform: scale(1.02);
+    box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+}
+
+
+@media screen and (max-width: 1024px) {
+    .elements__element {
+        margin-right: 1.01%;
+        margin-top: 8px;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .elements__element {
+        width: 90%;
+        margin-right: 5%;
+        margin-left: 5%;
+        margin-top: 10px;
+    }
+}

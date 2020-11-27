@@ -1,0 +1,26 @@
+.searcher__image{
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-repeat: no-repeat;
+   
+
+    overflow: hidden;
+    object-fit: cover;
+    object-position: top center;
+    height: 576px;
+    width: 100%;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+    .searcher__image {
+        height: 536px;
+    }
+}
+
+
+
+    

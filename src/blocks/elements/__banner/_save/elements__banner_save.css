@@ -1,0 +1,9 @@
+.elements__banner_save{
+    background-image: url(../../../../images/banner_gray.svg);
+}
+
+
+.elements__banner_save:hover{
+    background-image: url(../../../../images/banner.svg);
+    cursor: pointer;
+}

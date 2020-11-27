@@ -1,0 +1,19 @@
+.result__title_not-found {
+    font-family: Roboto Slab;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
+    color: #1A1B22;
+    width: 356px;
+    margin: 0;
+    margin-top: 32px;
+} 
+
+
+
+@media screen and (max-width: 500px) {
+    .result__title_not-found {
+        width: 288px;
+    }
+}

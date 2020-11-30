@@ -1,0 +1,12 @@
+.popup__center {
+    display: flex;
+    margin-left: 50px;
+}
+
+
+
+@media screen and (max-width: 550px) {
+    .popup__center {
+        margin-left: 0px;
+    }
+}

@@ -1,0 +1,5 @@
+.result__searching_image{
+    width: 74px;
+    height: 74px;
+    animation: rotation 0.8s linear infinite;
+}

@@ -1,0 +1,39 @@
+@import "./__image/searcher__image.css";
+@import "./__title/searcher__title.css";
+@import "./__subtitle/searcher__subtitle.css";
+@import "./__square/searcher__square.css";
+@import "./__button/searcher__button.css";
+@import "./__input/searcher__input.css";
+@import "./__form/searcher__form.css";
+
+@import "./__button/_click/searcher__button_click.css";
+
+.searcher{
+    max-width: 1440px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    height: 576px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .searcher {
+        height: 536px;
+        
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .searcher {
+        flex-direction: row;
+        justify-content: center;
+        
+    }
+}
+

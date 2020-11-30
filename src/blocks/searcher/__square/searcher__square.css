@@ -1,0 +1,21 @@
+.searcher__square{
+    position: static;
+    z-index: 1;
+    width: 608px;
+    margin-top: 160px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .searcher__square {
+        width: 448px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .searcher__square {
+        width: 300px;
+        margin-top: 86px;
+    }
+}

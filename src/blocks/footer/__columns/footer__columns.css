@@ -1,0 +1,15 @@
+.footer__columns{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+
+@media screen and (max-width: 660px) {
+    .footer__columns {
+        width: 286px;
+    }
+}

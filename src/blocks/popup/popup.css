@@ -1,0 +1,44 @@
+@import "./__button/popup__button.css";
+@import "./__header/popup__header.css";
+@import "./__input/popup__input.css";
+@import "./__container/popup__container.css";
+@import "./__close/popup__close.css";
+@import "./__button/_inactive/button_inactive.css";
+@import "./__span-error/popup__span-error.css";
+@import "./__label-input/popup__label-input.css";
+@import "./_input-error/popup_input-error.css";
+@import "./__center/popup__center.css";
+@import "./__span-name/popup__span-name.css";
+@import "./__group-auth/popup__group-auth.css";
+@import "./__span-switch/popup__span-switch.css";
+@import "./__link-switch/popup__link-switch.css";
+@import "./__link/popup__link.css";
+
+.popup {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0s, opacity .4s, linear .4s;
+    z-index: 3;
+}
+
+
+
+
+@media screen and (max-width: 550px) {
+    .popup {
+        align-items: start;
+        padding-top: 56px;
+    }
+}
+
+
+

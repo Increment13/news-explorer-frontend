@@ -1,0 +1,64 @@
+.popup__input {
+    width: 358px;
+    height: 25px;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-family: Inter;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media screen and (max-width: 550px) {
+    .popup__input {
+        width: 288px;
+    }
+}
+
+.popup__input::-webkit-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.popup__input::-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.popup__input:-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.popup__input:-ms-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.popup__input:focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}
+
+.popup__input:focus::-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}
+
+.popup__input:focus:-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}
+
+.popup__input:focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}

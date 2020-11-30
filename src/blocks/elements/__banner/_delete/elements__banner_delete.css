@@ -1,0 +1,8 @@
+.elements__banner_delete {
+    background-image: url(../../../../images/trash.svg);
+}
+
+.elements__banner_delete:hover {
+    background-image: url(../../../../images/trash_black.svg);
+    cursor: pointer;
+}

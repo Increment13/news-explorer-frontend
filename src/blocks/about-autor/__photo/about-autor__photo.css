@@ -1,0 +1,32 @@
+.about-autor__photo {
+    border-radius: 1000px;
+    width: 32.22vw;
+    height: 32.22vw;
+    /*overflow: hidden;*/
+    object-fit: cover;
+    object-position: bottom center;
+}
+
+
+@media screen and (min-width: 1441px) {
+    .about-autor__photo {
+        width: 464px;
+        height: 464px;
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    .about-autor__photo {
+        margin-bottom: 24px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .about-autor__photo {
+        margin-bottom: 24px;
+        width: 272px;
+        height: 272px;
+    }
+}
+

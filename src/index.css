@@ -1,0 +1,16 @@
+@import "./blocks/rotation/rotation.css";
+@import "./vendor/normalize.css";
+@import "./fonts/fonts.css";
+@import "./blocks/page/page.css";
+@import "./blocks/header/header.css";
+@import "./blocks/searcher/searcher.css";
+@import "./blocks/result/result.css";
+@import "./blocks/about-autor/about-autor.css";
+@import "./blocks/footer/footer.css";
+@import "./blocks/elements/elements.css";
+@import "./blocks/popup/popup.css";
+@import "./blocks/popup/_opened/popup_opened.css";
+@import "./blocks/header/_black/header_black.css";
+@import "./blocks/savenews/savenews.css";
+@import "./blocks/burger/burger.css";
+@import "./blocks/burger/_opened/burger_opened.css";

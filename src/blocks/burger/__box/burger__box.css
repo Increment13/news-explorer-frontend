@@ -1,0 +1,10 @@
+.burger__box{
+        width: 100%;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding-top: 24px;
+        padding-bottom: 24px;
+}

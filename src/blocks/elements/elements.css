@@ -1,0 +1,42 @@
+@import "./__element/elements__element.css";
+@import "./__image-container/elements__image-container.css";
+@import "./__banner/elements__banner.css";
+@import "./__banner/_save/elements__banner_save.css";
+@import "./__banner/_delete/elements__banner_delete.css";
+@import "./__image/elements__image.css";
+@import "./__banner-image/elements__banner-image.css";
+@import "./__date/elements__date.css";
+@import "./__titile/elements__titile.css";
+@import "./__description/elements__description.css";
+@import "./__source/elements__source.css";
+@import "./__info/elements__info.css";
+@import "./__url/element__url.css";
+@import "./__bannerSaved/elements__bannerSaved.css";
+@import "./__bannerSaved/_active/elements__bannerSaved_active.css";
+@import "./__bannerSubject/elements__bannerSubject.css";
+@import "./__banner/_save/elements__banner_save.css";
+@import "./__banner/_delete/elements__banner_delete.css";
+
+.elements {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+
+@media screen and (max-width: 768px) {
+    .elements {
+        margin-top: 32px;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .elements {
+        margin-top: 24px;
+    }
+}
+

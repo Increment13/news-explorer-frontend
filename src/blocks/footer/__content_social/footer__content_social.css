@@ -1,0 +1,22 @@
+.footer__content_social{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-left: 40px;
+
+}
+
+
+
+@media screen and (max-width: 1024px) {
+    .footer__content_social {
+        margin-left: 25px;
+    }
+}
+
+
+@media screen and (max-width: 660px) {
+    .footer__content_social {
+        margin-left: 0;
+    }
+}

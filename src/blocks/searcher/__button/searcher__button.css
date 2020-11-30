@@ -1,0 +1,37 @@
+.searcher__button {
+    height: 64px;
+    width: 168px;
+    background: #2F71E5;
+    border: 0;
+    border-radius: 100px;
+    color: white;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 500;
+    outline: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+}
+
+.searcher__button:hover,
+.searcher__button:active,
+.searcher__button:focus {
+    outline: none;
+    cursor: pointer;
+    background: #347EFF;
+}
+
+@media screen and (max-width: 500px) {
+    .searcher__button {
+        width: 288px;
+        position: static;
+        margin-top: 16px;
+        margin-bottom: 32px;
+        height: 56px;
+        font-size: 18px;
+        line-height: 24px;
+    }
+}

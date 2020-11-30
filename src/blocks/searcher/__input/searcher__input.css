@@ -1,0 +1,78 @@
+.searcher__input {
+    margin-top: 64px;
+    width: 584px;
+    height: 64px;
+    background: #FFFFFF;
+    border: 0;
+    outline: none;
+    border-radius: 100px;
+    color: black;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: normal;
+    padding: 0;
+    padding-left: 24px;
+}
+
+.searcher__input::-webkit-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.searcher__input::-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.searcher__input:-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.searcher__input:-ms-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    color: #B6BCBF;
+}
+
+.searcher__input:focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}
+
+.searcher__input:focus::-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}
+
+.searcher__input:focus:-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}
+
+.searcher__input:focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .searcher__input {
+        width: 424px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .searcher__input {
+        margin-top: 122px;
+        width: 288px;
+        padding-left: 0;
+        height: 56px;
+    }
+}

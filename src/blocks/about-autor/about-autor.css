@@ -1,0 +1,33 @@
+@import "./__photo/about-autor__photo.css";
+@import "./__square/about-autor__square.css";
+@import "./__subtitle/about-autor__subtitle.css";
+@import "./__title/about-autor__title.css";
+
+
+.about-autor{
+    max-width: 1440px;
+    margin-left: 104px;
+    margin-right: 104px;
+}
+
+@media screen and (max-width: 1439px) {
+    .about-autor {
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .about-autor {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .about-autor {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+}

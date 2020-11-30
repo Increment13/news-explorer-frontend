@@ -1,0 +1,11 @@
+.elements__description {
+    height: 88px;
+    max-width: 352px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #1A1B22;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}  
+

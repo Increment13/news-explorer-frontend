@@ -1,0 +1,23 @@
+.header__burger{
+    display: none;
+}
+
+
+
+@media screen and (max-width: 760px) {
+    .header__burger {
+        display: flex;
+        height: 50px;
+        width: 50px;
+        outline: none;
+        background: transparent;
+        background-repeat: no-repeat;
+        background-position: center;
+        border: 0;
+        animation: rotation 0.4s ;
+        animation-iteration-count: 1;
+        align-items: center;
+        justify-content: center;
+    }
+}
+

@@ -1,0 +1,14 @@
+.savenews__header {
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: #B6BCBF;
+}
+
+
+@media screen and (max-width: 768px) {
+    .savenews__header {
+        font-size: 12px;
+    }
+}

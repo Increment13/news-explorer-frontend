@@ -4,7 +4,7 @@ import imgLogout from '../images/logout.svg';
 import imgLogoutBlack from '../images/logout_black.svg';
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
-function Burger({ onAuthPopupOpen, loggedIn, signOut, isSavedPath, isBurgerOpen, onClose }) {
+function Burger({ onAuthPopupOpen, loggedIn, signOut, isSavedPath, isBurgerOpen, onClose, changePath }) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -18,24 +18,31 @@ function Burger({ onAuthPopupOpen, loggedIn, signOut, isSavedPath, isBurgerOpen,
     }
   }
 
-  function handleLinkClick(){
+  function hadleToMain() {
+    changePath(false);
     setTimeout(() => {
       onClose();
     }, 150);
   }
 
+  function  hadleToSavedPath() {
+    changePath(true);
+    setTimeout(() => {
+      onClose();
+    }, 150);
+  }
 
   return (
     <div className={`burger ${isBurgerOpen ? 'burger_opened' : ''}`}>
       <nav className="burger__box">
       <ul className="burger__links">
         <li className="burger__list">
-          <Link to="/" className="burger__link" onClick={handleLinkClick}>Главная</Link>
+          <Link to="/" className="burger__link" onClick={hadleToMain}>Главная</Link>
         </li>
         
         {loggedIn ? 
         <li className="burger__list">
-          <Link to="/saved-news" className="burger__link"  onClick={handleLinkClick}>Сохранённые статьи</Link>
+          <Link to="/saved-news" className="burger__link"  onClick={hadleToSavedPath}>Сохранённые статьи</Link>
         </li>
           : null
          }

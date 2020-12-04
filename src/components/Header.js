@@ -1,12 +1,14 @@
 import React from 'react';
 import Navigation from './Navigation';
 
-function Header({ onAuthPopupOpen, loggedIn, signOut, isSavedPath, setIsSavedPath, changePath, isBurgerOpen, onBurgerOpen, onClose, isAuthPopupOpen, isRegPopupOpen, isInfoPopupOpen }) {
+function Header({ onAuthPopupOpen, loggedIn, signOut, isSavedPath, changePath, isBurgerOpen, onBurgerOpen, onClose, isAuthPopupOpen, isRegPopupOpen, isInfoPopupOpen }) {
+
+
 
   return (
     <>
     <header className={`header ${isSavedPath ? 'header_black' : ''}  ${isBurgerOpen ? 'header_blackBurger' : ''}`} 
-
+ 
     >
       <div className="header__navigation">
         <span className={`header__logo ${
@@ -16,7 +18,6 @@ function Header({ onAuthPopupOpen, loggedIn, signOut, isSavedPath, setIsSavedPat
           onAuthPopupOpen={onAuthPopupOpen}
           loggedIn={loggedIn}
           signOut={signOut}
-          setIsSavedPath={setIsSavedPath}
           changePath={changePath}
           isSavedPath={isSavedPath}
 

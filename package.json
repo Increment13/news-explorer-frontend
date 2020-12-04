@@ -16,7 +16,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "deploy": "npm run build && scp -r ./build/* increment13@84.201.129.170:/home/increment13/frontend"
+        "deploy": "npm run build && scp -r ./build/* increment13@84.201.134.77:/home/increment13/frontend"
     },
     "eslintConfig": {
         "extends": "react-app"

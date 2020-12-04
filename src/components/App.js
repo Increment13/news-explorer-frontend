@@ -3,15 +3,17 @@ import React, { useEffect, useState } from 'react';
 import Main from './Main';
 import AuthPopup from './AuthPopup';
 import RegistrationPopup from './RegistrationPopup';
-import SavedNews from './SavedNews';
+
 import Footer from './Footer';
 import InfoPopup from './InfoPopup';
+import Header from './Header';
 import Burger from './Burger';
 
 import CurrentUserContext from "../contexts/CurrentUserContext";
-import { Route, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../index.css';
-import * as auth from '../auth.js';
+import * as auth from '../api/AuthApi.js';
+import * as mainapi from '../api/MainApi.js';
 
 function App() {
 
@@ -23,13 +25,71 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFoundResult, setIsNotFoundResult] = useState(false);
   const [isResult, setIsResult] = useState(false);
-  const [articles, setArticles] = useState();
+  const [articles, setArticles] = useState([]);
+  const [savedArticles, setSavedArticles] = useState();
   const [isSavedPath, setIsSavedPath] = useState(false);
   const [currentUser, setCurrentUser] = useState('');
-  //установить при логине наличие сохраненных карт
-  const [isSaveCard, setIsSaveCard] = useState(false);
 
   const history = useHistory();
+
+  //загрузка карточек (если пользователь залогинен)
+  React.useEffect(() => {
+    if (loggedIn) {
+      //проверяем логин, что б зря не обращаться 
+      mainapi.getRequest().then((data) => {
+        setSavedArticles([...data]);
+      }).catch((err) => console.error(err));
+    }
+  }, [loggedIn]);
+
+  //Сохранение новой карточки
+  function handleSaveArticles(data) {
+    mainapi.postRequest({
+      keyword: data.keyword,
+      title: data.title,
+      text: data.text,
+      date: data.date,
+      source: data.source,
+      link: data.link,
+      image: data.image
+    })
+      .then((newArticle) => {
+
+        setSavedArticles([...savedArticles, newArticle]);
+
+        const newLocalArticles = articles.map((art) =>
+          art.url === data.link
+            ?
+            { ...art, _id: newArticle._id }
+            : art);
+
+          localStorage.setItem("articles", JSON.stringify(newLocalArticles));
+          setArticles(JSON.parse(localStorage.getItem("articles")));
+
+      })
+      .catch((err) => console.error(err));
+  }
+
+  //Удаление карточки
+  function handleDeleteArticles(deleteId) {
+    mainapi
+      .deleteRequest(deleteId)
+      .then(() => {
+        const newArticles = savedArticles.filter((c) => c._id !== deleteId);
+        setSavedArticles(newArticles);
+
+        const newLocalArticles = articles.map((art) =>
+          art._id === deleteId
+            ?
+            { ...art, _id: '' }
+            : art);
+
+            localStorage.setItem("articles", JSON.stringify(newLocalArticles));
+            setArticles(JSON.parse(localStorage.getItem("articles")));
+
+      })
+      .catch((err) => console.log(err));
+  }
 
   const tokenCheck = () => {
     let jwt = localStorage.getItem('jwt');
@@ -45,44 +105,76 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
+  }, [loggedIn]);
+
+  //если есть выгруженные новости
+  useEffect(() => {
+    if (localStorage.getItem('articles')) {
+      setArticles(JSON.parse(localStorage.getItem('articles')));
+      setIsResult(true);
+    }
   }, []);
 
-
+  //закрытие всех попапов
   function closeAllPopups() {
     setIsAuthPopupOpen(false);
     setIsRegPopupOpen(false);
     setIsInfoPopupOpen(false);
     setIsBurgerOpen(false);
+    document.body.classList.remove('body_noScroll');
   }
 
+  //открытие попапа успешно зарегестрирован
   function handleInfoOpen() {
     setIsInfoPopupOpen(true);
   }
 
+  //открытие бургера и отключние скрола 
   function handleBurgerOpen() {
     setIsBurgerOpen(true);
+    document.body.classList.add('body_noScroll');
   }
 
+  //закрыть поапов по Esc
   function handleKeyDownEsc(e) {
     if (e.keyCode === 27) {
       closeAllPopups();
     }
   }
 
+  //открытие попапа авторизации
   function handleAuthPopupOpen() {
     setIsAuthPopupOpen(true);
   }
 
+  //переход с инфо в авторизацию
   function handleInfoClose() {
     setIsInfoPopupOpen(false);
     setIsAuthPopupOpen(true);
   }
 
+  //свич между регистрацией и авторизацией
   function handleSwitchPopupOpen() {
     setIsRegPopupOpen(!isRegPopupOpen);
     setIsAuthPopupOpen(!isAuthPopupOpen);
   }
 
+  //переход по страницам
+  function changePath(bool) {
+    setIsSavedPath(bool);
+  }
+
+  //выход 
+  function signOut() {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('articles');
+
+    setLoggedIn(false);
+    isSavedPath(false);
+    history.push('/');
+  }
+
+  //авторизация пользователя
   const onAuth = (email, password) => {
     return auth
       .authorize(email, password)
@@ -102,96 +194,81 @@ function App() {
     history.push('/');
   }
 
-  function signOut() {
-    localStorage.removeItem('jwt');
-    setLoggedIn(false);
-    history.push('/');
-  }
-
-  function changePath(status) {
-    setIsSavedPath(status)
-   }
-   
+  //вход на /saved-news, если сохранен jwt пускаем
   useEffect(() => {
     if (window.location.pathname === '/saved-news') {
-      setIsSavedPath(true);
-    }
 
-    if (!loggedIn) {
-      let jwt = localStorage.getItem('jwt');
-      auth
-        .getUser(jwt)
-        .then((res) => {
-          if (res._id) {
-            setCurrentUser(res);
-          }
-        })
-        .catch((err) => console.log(err));
+      if (!loggedIn) {
+        let jwt = localStorage.getItem('jwt');
+        auth
+          .getUser(jwt)
+          .then((res) => {
+            if (res._id) {
+              setCurrentUser(res);
+              setIsSavedPath(true);
+              history.push('/saved-news');
+            }
+          })
+          .catch((err) => console.log(err));
+      }
     }
   }, []);
 
- 
 
 
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
+        <Header
+          onAuthPopupOpen={handleAuthPopupOpen}
+          loggedIn={loggedIn}
+          signOut={signOut}
+          changePath={changePath}
+          isSavedPath={isSavedPath}
+          isBurgerOpen={isBurgerOpen}
+          onBurgerOpen={handleBurgerOpen}
+          onClose={closeAllPopups}
+          isAuthPopupOpen={isAuthPopupOpen}
+          isRegPopupOpen={isRegPopupOpen}
+          isInfoPopupOpen={isInfoPopupOpen}
+        />
+        <Main
+          currentUser={currentUser}
+          loggedIn={loggedIn}
+          signOut={signOut}
+          onClose={closeAllPopups}
 
-        <Route path="/saved-news">
-          <SavedNews
-            currentUser={currentUser}
-            loggedIn={loggedIn}
-            signOut={signOut}
-            setIsSavedPath={setIsSavedPath}
-            changePath={changePath}
-            isSavedPath={isSavedPath}
-            onSetArticles={setArticles}
-            isSaveCard={isSaveCard}
+          onSetIsLoading={setIsLoading}
+          onSetIsNotFoundResult={setIsNotFoundResult}
+          onSetIsResult={setIsResult}
+          onSetArticles={setArticles}
 
-            isBurgerOpen={isBurgerOpen}
-            onBurgerOpen={handleBurgerOpen}
-            onClose={closeAllPopups}
+          isLoading={isLoading}
+          isNotFoundResult={isNotFoundResult}
+          isResult={isResult}
+          articles={articles}
 
-            setIsAuthPopupOpen={setIsAuthPopupOpen}
-            setIsRegPopupOpen={setIsAuthPopupOpen}
-            setIsInfoPopupOpen={setIsAuthPopupOpen}
-          />
-        </Route>
-        <Route exact path="/">
-          <Main
-            onAuthPopupOpen={handleAuthPopupOpen}
-            loggedIn={loggedIn}
-            signOut={signOut}
-            onSetIsLoading={setIsLoading}
-            onSetIsNotFoundResult={setIsNotFoundResult}
-            onSetIsResult={setIsResult}
-            onSetArticles={setArticles}
-            isLoading={isLoading}
-            isNotFoundResult={isNotFoundResult}
-            isSavedPath={isSavedPath}
-            isResult={isResult}
-            articles={articles}
-            currentUser={currentUser}
-            setIsSavedPath={setIsSavedPath}
-            changePath={changePath}
+          isBurgerOpen={isBurgerOpen}
+          onBurgerOpen={handleBurgerOpen}
 
-            isBurgerOpen={isBurgerOpen}
-            onBurgerOpen={handleBurgerOpen}
-            onClose={closeAllPopups}
+          onAuthPopupOpen={handleAuthPopupOpen}
+          isAuthPopupOpen={isAuthPopupOpen}
+          isRegPopupOpen={isRegPopupOpen}
+          isInfoPopupOpen={isInfoPopupOpen}
 
-            isAuthPopupOpen={isAuthPopupOpen}
-            isRegPopupOpen={isRegPopupOpen}
-            isInfoPopupOpen={isInfoPopupOpen}
-          />
-        </Route>
+          isSavedPath={isSavedPath}
+          savedArticles={savedArticles}
 
-        <Burger 
-        isBurgerOpen={isBurgerOpen}
-        onClose={closeAllPopups}
-
-        onAuthPopupOpen={handleAuthPopupOpen}
-        loggedIn={loggedIn}
-        signOut={signOut}
+          handleSaveArticles={handleSaveArticles}
+          handleDeleteArticles={handleDeleteArticles}
+        />
+        <Burger
+          isBurgerOpen={isBurgerOpen}
+          onClose={closeAllPopups}
+          changePath={changePath}
+          onAuthPopupOpen={handleAuthPopupOpen}
+          loggedIn={loggedIn}
+          signOut={signOut}
         />
         <AuthPopup
           onAuth={onAuth}
@@ -206,7 +283,8 @@ function App() {
           onClose={closeAllPopups}
           onSwitchPopupOpen={handleSwitchPopupOpen}
           onDownEsc={handleKeyDownEsc}
-          handleInfoOpen={handleInfoOpen} />
+          handleInfoOpen={handleInfoOpen}
+        />
         <InfoPopup
           isOpen={isInfoPopupOpen}
           onClose={closeAllPopups}

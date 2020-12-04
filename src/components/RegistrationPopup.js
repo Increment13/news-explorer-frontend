@@ -1,6 +1,6 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
-import * as auth from '../auth.js';
+import * as auth from '../api/AuthApi.js';
 
 function RegistrationPopup({ isOpen, onClose, onSwitchPopupOpen, onDownEsc, handleInfoOpen }) {
 

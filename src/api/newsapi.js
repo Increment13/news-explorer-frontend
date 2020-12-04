@@ -1,8 +1,8 @@
 const URL_NEWSAPI = 'http://newsapi.org/v2/top-headlines/'
 const API_KEY = '43e6cbd5b52b4d9f9cc4455ca17cab86';
 
-function getNews(query, country = "ru", rangeDays = 7, pageSize = 20) {
-  const dateFrom = new Date(Date.now() - 86400000 * rangeDays)
+export const getNews = (query, country = "ru", rangeDay = 7, pageSize = 100) => {
+  const dateFrom = new Date(Date.now() - 24 * 3600 * 1000 * rangeDay)
     .toJSON()
     .split("T")[0];
   const dateTo = new Date().toJSON().split("T")[0];
@@ -12,6 +12,4 @@ function getNews(query, country = "ru", rangeDays = 7, pageSize = 20) {
   )
     .then((res) => res.json())
     .catch((err) => console.log(err));
-}
-
-export default getNews;
+};

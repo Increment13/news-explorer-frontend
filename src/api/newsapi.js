@@ -1,4 +1,4 @@
-const URL_NEWSAPI = 'http://newsapi.org/v2/top-headlines/'
+const URL_NEWSAPI = 'https://newsapi.org/v2/top-headlines/'
 const API_KEY = '43e6cbd5b52b4d9f9cc4455ca17cab86';
 
 export const getNews = (query, country = "ru", rangeDay = 7, pageSize = 100) => {

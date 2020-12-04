@@ -34,7 +34,10 @@ function SearchForm({ onSetIsLoading, onSetIsNotFoundResult, onSetIsResult, onSe
                   item._id = '';
                 }
               })
+            } else {
+              item._id = '';
             }
+
             item.keyword = inputValue;
 
             return item;

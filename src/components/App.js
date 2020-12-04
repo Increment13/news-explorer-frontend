@@ -170,7 +170,7 @@ function App() {
     localStorage.removeItem('articles');
 
     setLoggedIn(false);
-    isSavedPath(false);
+    setIsSavedPath(false);
     history.push('/');
   }
 

@@ -2,10 +2,10 @@ import React from 'react';
 import background from '../images/georgia-de-lotz--UsJoNxLaNo-unsplash.png';
 import * as newsapi from '../api/NewsApi.js';
 
-function SearchForm({ onSetIsLoading, onSetIsNotFoundResult, onSetIsResult, onSetArticles, savedArticles }) {
+function SearchForm({ onSetIsLoading, onSetIsNotFoundResult, onSetIsResult, onSetArticles, savedArticles, loggedIn }) {
 
   const [inputValue, setInputValue] = React.useState('');
-  
+
   function handleSearchChange(e) {
     setInputValue(e.target.value);
   }
@@ -25,17 +25,18 @@ function SearchForm({ onSetIsLoading, onSetIsNotFoundResult, onSetIsResult, onSe
           const articles = res.articles;
           articles.map((item) => {
 
-            savedArticles.forEach(savedArticle => {
-              if(savedArticle.link === item.url){ 
-                item._id = savedArticle._id ;
-              }
-              else{
-                item._id = '';
-              }
-            })
-
+            if (loggedIn) {
+              savedArticles.forEach(savedArticle => {
+                if (savedArticle.link === item.url) {
+                  item._id = savedArticle._id;
+                }
+                else {
+                  item._id = '';
+                }
+              })
+            }
             item.keyword = inputValue;
- 
+
             return item;
           });
           onSetArticles(articles);

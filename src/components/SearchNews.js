@@ -29,6 +29,8 @@ function SearchNews({
         onSetIsResult={onSetIsResult}
         onSetArticles={onSetArticles}
         savedArticles={savedArticles}
+
+        loggedIn={loggedIn}
       />
       {isResult && (
         <NewsCardList

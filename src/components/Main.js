@@ -1,14 +1,14 @@
 import React from 'react';
-import SearchForm from './SearchForm';
-import Header from './Header';
-import About from './About';
-import Preloader from './Preloader';
-import NewsCardList from './NewsCardList';
-import NotFoundResult from './NotFoundResult';
+import { Route } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
+import SavedNews from './SavedNews';
+import SearchNews from './SearchNews';
 
-function Main({ onAuthPopupOpen,
+function Main({
+  currentUser,
   loggedIn,
   signOut,
+  closeAllPopups,
   onSetIsLoading,
   onSetIsNotFoundResult,
   onSetIsResult,
@@ -16,48 +16,72 @@ function Main({ onAuthPopupOpen,
   isLoading,
   isNotFoundResult,
   isResult,
-  isSavedPath,
   articles,
-  setIsSavedPath,
-  changePath,
   isBurgerOpen,
-  onBurgerOpen,
-  onClose, 
-  isAuthPopupOpen, isRegPopupOpen, isInfoPopupOpen }) {
+  handleBurgerOpen,
+  handleAuthPopupOpen,
+  isAuthPopupOpen,
+  isRegPopupOpen,
+  isInfoPopupOpen,
+  savedArticles,
+  isSavedPath,
+  handleSaveArticles,
+  handleDeleteArticles
+}
+) {
+
   return (
     <>
-      <Header
-        onAuthPopupOpen={onAuthPopupOpen}
+     <ProtectedRoute
+        path="/saved-news"
         loggedIn={loggedIn}
+        component={SavedNews}
+        currentUser={currentUser}
         signOut={signOut}
-        setIsSavedPath={setIsSavedPath}
-        changePath={changePath}
+
+        onSetArticles={onSetArticles}
 
         isBurgerOpen={isBurgerOpen}
-        onBurgerOpen={onBurgerOpen}
-        onClose={onClose}
-        isAuthPopupOpen={isAuthPopupOpen}
-        isRegPopupOpen={isRegPopupOpen}
-        isInfoPopupOpen={isInfoPopupOpen}
+        onBurgerOpen={handleBurgerOpen}
+        onClose={closeAllPopups}
+
+        isSavedPath={isSavedPath}
+        savedArticles={savedArticles}
+
+        handleSaveArticles={handleSaveArticles}
+        handleDeleteArticles={handleDeleteArticles}
       />
-      <SearchForm
-        onSetIsLoading={onSetIsLoading}
-        onSetIsNotFoundResult={onSetIsNotFoundResult}
-        onSetIsResult={onSetIsResult}
-        onSetArticles={onSetArticles}
-      />
-      {isResult && (
-        <NewsCardList
-          loggedIn={loggedIn}
-          isSavedPath={isSavedPath}
-          articles={articles}
-          onSetArticles={onSetArticles}
-        />
-      )}
-      {isLoading && <Preloader />}
-      {isNotFoundResult && <NotFoundResult
-        isSavedPath={isSavedPath} />}
-      <About />
+      <Route exact path="/">
+          <SearchNews
+            currentUser={currentUser}
+            loggedIn={loggedIn}
+            signOut={signOut}
+            onClose={closeAllPopups}
+
+            onSetIsLoading={onSetIsLoading}
+            onSetIsNotFoundResult={onSetIsNotFoundResult}
+            onSetIsResult={onSetIsResult}
+            onSetArticles={onSetArticles}
+
+            isLoading={isLoading}
+            isNotFoundResult={isNotFoundResult}
+            isResult={isResult}
+            articles={articles}
+
+            isBurgerOpen={isBurgerOpen}
+            onBurgerOpen={handleBurgerOpen}
+
+            onAuthPopupOpen={handleAuthPopupOpen}
+            isAuthPopupOpen={isAuthPopupOpen}
+            isRegPopupOpen={isRegPopupOpen}
+            isInfoPopupOpen={isInfoPopupOpen}
+
+            savedArticles={savedArticles}
+            handleSaveArticles={handleSaveArticles}
+            handleDeleteArticles={handleDeleteArticles}
+
+          />
+      </Route>
     </>
 
   );

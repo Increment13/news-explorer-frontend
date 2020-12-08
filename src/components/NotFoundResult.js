@@ -7,7 +7,7 @@ const NotFoundResult = ({ isSavedPath }) => {
             <div className="result__not-found">
                 <img className="result__not-found_image" src={imgNotFound} alt="ничего не найдено" />
                 <h3 className="result__title_not-found">Ничего не найдено</h3>
-                <span className="result__subtitle_not-found">{!isSavedPath? 'К сожалению по вашему запросу ничего не найдено.' : 'У Вас еще нет сохраненных новостей.'}</span>
+                <span className="result__subtitle_not-found">{!isSavedPath ? 'К сожалению по вашему запросу ничего не найдено.' : 'У Вас еще нет сохраненных новостей.'}</span>
             </div>
         </section>
     );

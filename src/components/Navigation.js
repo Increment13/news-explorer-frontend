@@ -5,7 +5,6 @@ import imgLogoutBlack from '../images/logout_black.svg';
 import imgBurger from '../images/burger.svg';
 import imgBurgerBlack from '../images/burgerblack.svg';
 
-
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Navigation({ onAuthPopupOpen, loggedIn, signOut, changePath, isSavedPath, isBurgerOpen, onBurgerOpen, onClose, isAuthPopupOpen, isRegPopupOpen, isInfoPopupOpen }) {
@@ -20,30 +19,44 @@ function Navigation({ onAuthPopupOpen, loggedIn, signOut, changePath, isSavedPat
     }
   }
 
-  return (
-      <nav>
-        <ul className="header__links">
-          <li className={`header__list ${!isSavedPath ? 'header__list_active' : ''}`}>
-            <Link to="/" className={`header__link  ${isSavedPath ? 'header__link_black ' : ''}`}>Главная</Link>
-          </li>
-          <li className={`header__list  ${loggedIn ? '' : 'header__list_hide'} ${isSavedPath ? 'header__list_activeBlack ' : ''}`}>
-            <Link to="/saved-news" className={`header__link ${isSavedPath ? 'header__link_black ' : ''}`} onClick={changePath(true)}>Сохранённые статьи</Link>
-          </li>
-          <li className="header__list">
-            <button className={`header__button ${isSavedPath ? 'header__button_black ' : ''}`} onClick={handleClick}>{` ${loggedIn ? (currentUser.name) : 'Авторизоваться'}`}
-              {loggedIn &&
-                <img className="header__buttonImg" src={isSavedPath ? imgLogoutBlack : imgLogout} alt="выйти" />
-              }
-            </button>
-          </li>
-        </ul>
+  function hadleToMain() {
+    changePath(false);
+  }
 
-        {isBurgerOpen || isAuthPopupOpen || isRegPopupOpen || isInfoPopupOpen ?
-          <button className="header__burger header__burger_open-popup"  onClick={onClose}/>
-          : <button className="header__burger" onClick={onBurgerOpen}><img src={!isSavedPath ? imgBurger : imgBurgerBlack} alt=""/>
-            </button>
-        }
-      </nav>
+  function  hadleToSavedPath() {
+    changePath(true);
+  }
+
+
+
+  return (
+    <nav>
+      <ul className="header__links">
+        <li className={`header__list ${!isSavedPath ? 'header__list_active' : ''}`}>
+          <Link to="/" className={`header__link  ${isSavedPath ? 'header__link_black ' : ''}`}
+            onClick={hadleToMain}
+          >Главная</Link>
+        </li>
+        <li className={`header__list  ${loggedIn ? '' : 'header__list_hide'} ${isSavedPath ? 'header__list_activeBlack ' : ''}`}>
+          <Link to="/saved-news" className={`header__link ${isSavedPath ? 'header__link_black ' : ''}`}
+            onClick={hadleToSavedPath}
+          >Сохранённые статьи</Link>
+        </li>
+        <li className="header__list">
+          <button className={`header__button ${isSavedPath ? 'header__button_black ' : ''}`} onClick={handleClick}>{` ${loggedIn ? (currentUser.name) : 'Авторизоваться'}`}
+            {loggedIn &&
+              <img className="header__buttonImg" src={isSavedPath ? imgLogoutBlack : imgLogout} alt="выйти" />
+            }
+          </button>
+        </li>
+      </ul>
+
+      {isBurgerOpen || isAuthPopupOpen || isRegPopupOpen || isInfoPopupOpen ?
+        <button className="header__burger header__burger_open-popup" onClick={onClose} />
+        : <button className="header__burger" onClick={onBurgerOpen}><img src={!isSavedPath ? imgBurger : imgBurgerBlack} alt="" />
+        </button>
+      }
+    </nav>
   );
 }
 

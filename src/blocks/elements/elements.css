@@ -16,27 +16,13 @@
 @import "./__bannerSubject/elements__bannerSubject.css";
 @import "./__banner/_save/elements__banner_save.css";
 @import "./__banner/_delete/elements__banner_delete.css";
+@import "./__banner/_saved/elements__banner_saved.css";
 
 .elements {
-    margin-top: 64px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
-}
-
-
-@media screen and (max-width: 768px) {
-    .elements {
-        margin-top: 32px;
-    }
-}
-
-
-@media screen and (max-width: 500px) {
-    .elements {
-        margin-top: 24px;
-    }
 }
 

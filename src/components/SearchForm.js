@@ -1,25 +1,45 @@
 import React from 'react';
 import background from '../images/georgia-de-lotz--UsJoNxLaNo-unsplash.png';
-import getNews from '../api/newsapi.js';
+import * as newsapi from '../api/NewsApi.js';
 
-function SearchForm({ onSetIsLoading, onSetIsNotFoundResult, onSetIsResult, onSetArticles }) {
+function SearchForm({ onSetIsLoading, onSetIsNotFoundResult, onSetIsResult, onSetArticles, savedArticles, loggedIn }) {
 
   const [inputValue, setInputValue] = React.useState('');
 
-  function handleSsarchChange(e) {
+  function handleSearchChange(e) {
     setInputValue(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    localStorage.removeItem("articles");
+    if (inputValue === '') {
+      return;
+    }
+
     onSetIsLoading(true);
     onSetIsNotFoundResult(false);
-    getNews(inputValue, "ru", 7, 100)
+    newsapi.getNews(inputValue, "ru", 7, 100)
       .then((res) => {
         if (res.status === "ok" && res.articles.length > 0) {
           const articles = res.articles;
           articles.map((item) => {
+
+            if (loggedIn) {
+              savedArticles.forEach(savedArticle => {
+                if (savedArticle.link === item.url) {
+                  item._id = savedArticle._id;
+                }
+                else {
+                  item._id = '';
+                }
+              })
+            } else {
+              item._id = '';
+            }
+
             item.keyword = inputValue;
+
             return item;
           });
           onSetArticles(articles);
@@ -43,7 +63,6 @@ function SearchForm({ onSetIsLoading, onSetIsNotFoundResult, onSetIsResult, onSe
       });
   }
 
-
   return (
     <section className="searcher">
       <div className="searcher__square">
@@ -57,7 +76,7 @@ function SearchForm({ onSetIsLoading, onSetIsNotFoundResult, onSetIsResult, onSe
             required
             placeholder="Введите тему новости"
             value={inputValue || ''}
-            onChange={handleSsarchChange} />
+            onChange={handleSearchChange} />
           <button className="searcher__button" onClick={handleSubmit}>Искать</button>
         </form>
       </div>

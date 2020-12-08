@@ -1,12 +1,27 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 function NewsCard({
     loggedIn,
     isSavedPath,
-    article
+    keyword,
+    title,
+    text,
+    date,
+    source,
+    link,
+    image,
+    idSavedArticle,
+    handleDeleteArticles,
+    handleSaveArticles
 }) {
 
     const [isFocus, setIsFocus] = React.useState(false);
+    const [isSaved, setIsSaved] = React.useState(false);
+
+    useEffect(() => {
+        if(!isSavedPath && idSavedArticle!=='')
+        setIsSaved(true);
+      }, []);
 
     function createDate(date) {
         const months = {
@@ -39,42 +54,60 @@ function NewsCard({
     }
 
     function handleSave() {
-        console.log('save');
+        handleSaveArticles({
+            keyword: keyword,
+            title: title,
+            text: text,
+            date: date,
+            source: source,
+            link: link,
+            image: image
+        });
+        setIsSaved(true);
     }
 
-    function handleDelete(){
-        console.log('delete');    
+    function handleDelete() {
+        handleDeleteArticles(idSavedArticle);
+        setIsSaved(false);
     }
+
+  function capitalize(word) {
+    return word[0].toUpperCase() + word.slice(1).toLowerCase();
+  }
 
     return (
         <>
             <div className="elements__image-container">
-                {!isSavedPath ?
+                {isSavedPath ?
                     <>
-                        <div className="elements__bannerSubject">subject</div>
+                        <div  className="elements__bannerSubject">{capitalize(keyword)}</div>
                         <div className={`elements__bannerSaved ${(isFocus) ? 'elements__bannerSaved_active' : ''}`}>Убрать из сохранённых</div>
-                        <button className="elements__banner elements__banner_delete" onMouseOver={onBannerFocus} onClick={handleDelete}></button>
+                        <button id="savedpath" className="elements__banner elements__banner_delete" onMouseOver={onBannerFocus} onClick={handleDelete}></button>
                     </>
                     :
                     !loggedIn ?
                         <>
-                            <div className={`elements__bannerSaved ${isFocus ? 'elements__bannerSaved_active' : ''}`}>Авторизуйтесь, чтобы сохранять статьи</div>
-                            <button className="elements__banner  elements__banner_save" onMouseOver={onBannerFocus}></button>
+                            <div  className={`elements__bannerSaved ${isFocus ? 'elements__bannerSaved_active' : ''}`}>Авторизуйтесь, чтобы сохранять статьи</div>
+                            <button id="nonauth" className="elements__banner  elements__banner_save" onMouseOver={onBannerFocus}></button>
                         </>
                         :
-                        <button className="elements__banner elements__banner_save" onMouseOver={onBannerFocus} onClick={handleSave}></button>
+                        isSaved ?
+                            <>
+                                <button id="mainpathdel" className="elements__banner elements__banner_saved" onMouseOver={onBannerFocus} onClick={handleDelete}></button>
+                            </>
+                            :
+                            <button id="mainpathsave" className="elements__banner elements__banner_save" onMouseOver={onBannerFocus} onClick={handleSave}></button>
                 }
-                <img className="elements__image" src={article.urlToImage} alt="фото новости" />
+                <img className="elements__image" src={image} alt="фото новости" />
             </div>
             <div className="elements__info">
-                <div className="elements__date">{createDate(article.publishedAt)}</div>
-                <h3 className="elements__titile">{article.title}</h3>
-                <p className="elements__description">{article.description}</p>
-                <p className="elements__source">{article.source.name}</p>
+                <div className="elements__date">{createDate(date)}</div>
+                <h3 className="elements__titile">{title}</h3>
+                <p className="elements__description">{text}</p>
+                <p className="elements__source">{source}</p>
             </div>
         </>
     );
 }
 
 export default NewsCard;
-

@@ -1,55 +1,38 @@
 import React from 'react';
-import Header from './Header';
+
 import TitleSavedNews from './TitleSavedNews';
-import NewsCardList from './NewsCardList';
+import NewsSavedCardList from './NewsSavedCardList';
 import NotFoundResult from './NotFoundResult'
 
-function SavedNews({ onAuthPopupOpen,
+function SavedNews({
     loggedIn,
-    signOut,
     isSavedPath,
-    articles,
-    changePath,
     onSetArticles,
-    isSaveCard,
-    isBurgerOpen,
-    onBurgerOpen,
-    onClose,
-    isAuthPopupOpen, 
-    isRegPopupOpen, 
-    isInfoPopupOpen }) {
+    savedArticles,
+    handleSaveArticles,
+    handleDeleteArticles
+}) {
     return (
         <>
-            <Header
-                onAuthPopupOpen={onAuthPopupOpen}
-                loggedIn={loggedIn}
-                signOut={signOut}
-                isSavedPath={isSavedPath}
-                changePath={changePath}
-
-                isBurgerOpen={isBurgerOpen}
-                onBurgerOpen={onBurgerOpen}
-                onClose={onClose}
-
-                isAuthPopupOpen={isAuthPopupOpen}
-                isRegPopupOpen={isRegPopupOpen}
-                isInfoPopupOpen={isInfoPopupOpen}
-            />
             <TitleSavedNews
-                articles={articles}
+                articles={savedArticles}
             />
-            {isSaveCard && (
-                <NewsCardList
+            {savedArticles.length > 0 && (
+                <NewsSavedCardList
                     loggedIn={loggedIn}
                     isSavedPath={isSavedPath}
-                    articles={articles}
+                    articles={savedArticles}
                     onSetArticles={onSetArticles}
+
+
+                    handleSaveArticles={handleSaveArticles}
+                    handleDeleteArticles={handleDeleteArticles}
                 />
             )}
-
-            {!isSaveCard && <NotFoundResult
-                isSavedPath={isSavedPath}
-            />}
+            {savedArticles.length === 0 &&
+                <NotFoundResult
+                    isSavedPath={isSavedPath}
+                />}
 
         </>
     );
